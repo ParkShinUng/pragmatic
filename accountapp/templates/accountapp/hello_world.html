@@ -6,6 +6,17 @@
         <h1>
             Testing
         </h1>
+
+        <form action="/account/hello_world/" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="POST">
+        </form>
+
+        <!-- views.py 의 context 에서 반환하는 text -->
+        <h1>
+            {{ text }}
+        </h1>
+        
     </div>
 
 {% endblock %}
