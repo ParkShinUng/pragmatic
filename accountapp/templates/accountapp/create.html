@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div style="text-align: center;">
+        <!-- accountapp 내부의 create Route 연결 : Routing 일원화 -->
+        <form action="{% url 'accountapp:create' %}" method="post">
+            <!-- POST 방식에는 반드시 csrf_token 작성 -->
+            {% csrf_token %}
+            <!-- View에서 작성한 AccountCreateView의 form을 그대로 생성 -->
+            {{ form }}
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+
+{% endblock %}
