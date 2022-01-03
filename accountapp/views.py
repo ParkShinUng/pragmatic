@@ -14,20 +14,24 @@ from accountapp.models import HelloWorld
 
 def hello_world(request):
 
-    if request.method == "POST":
-        
-        # hello_world_input 이라는 name의 값을 가져와 temp에 저장
-        temp = request.POST.get('hello_world_input')
+    if request.user.is_authenticated:
+        if request.method == "POST":
 
-        new_hello_world = HelloWorld()
-        new_hello_world.text = temp
-        new_hello_world.save()
+            # hello_world_input 이라는 name의 값을 가져와 temp에 저장
+            temp = request.POST.get('hello_world_input')
 
-        # accountapp 내부의 hello_world로 재접속 하라는 의미
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))  # app_name:name of urlpatterns
+            new_hello_world = HelloWorld()
+            new_hello_world.text = temp
+            new_hello_world.save()
+
+            # accountapp 내부의 hello_world로 재접속 하라는 의미
+            return HttpResponseRedirect(reverse('accountapp:hello_world'))  # app_name:name of urlpatterns
+        else:
+            hello_world_list = HelloWorld.objects.all()
+            return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
+
     else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
+        return HttpResponseRedirect(reverse('accountapp:login'))
 
 class AccountCreateView(CreateView):
     model = User
@@ -48,6 +52,7 @@ class AccountUpdateView(UpdateView):
     form_class = AccountUpdateForm
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
+
 
 class AccountDeleteView(DeleteView):
     model = User
