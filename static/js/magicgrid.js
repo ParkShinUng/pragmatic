@@ -283,10 +283,10 @@ let magicGrid = new MagicGrid({
 });
 
 // HTML태그 내의 모든 img에 대해 로드됐을 때 magicGrid를 다시 positioning 하라는 의미
-var masonrys = document.getElementByTagName("img");
+var masonrys = document.getElementsByTagName("img");
 
 for (let i = 0; i < masonrys.length; i++) {
-    masonrys[i].addEventListner('load', function() {
+    masonrys[i].addEventListener('load', function() {
         magicGrid.positionItems();
     }, false);
 }
