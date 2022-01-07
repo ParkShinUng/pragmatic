@@ -30,6 +30,10 @@ a:hover {
     text-decoration: none;
 }
 
+a:link {
+    text-decoration: none!important
+}
+
 .pragmatic_header_nav {
     margin: 0 0.5rem;
 }
