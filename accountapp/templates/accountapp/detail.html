@@ -40,16 +40,12 @@
             <a class="material-icons"
                style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
                href="{% url 'accountapp:update' pk=user.pk %}">
-                <p>
-                    settings
-                </p>
+                settings
             </a>
             <a class="material-icons"
                style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem;"
                href="{% url 'accountapp:delete' pk=user.pk %}">
-                <p>
-                    cancel
-                </p>
+                cancel
             </a>
             {% endif %}
         </div>
